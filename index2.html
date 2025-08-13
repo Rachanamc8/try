@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    select, button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    label {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <form id="travelForm">
+      <label for="from">From:</label>
+      <select id="from" name="from" required>
+        <option value="" disabled selected>Select a city</option>
+        <option value="bangalore">Bangalore</option>
+      </select>
+
+      <label for="to">To:</label>
+      <select id="to" name="to" required>
+        <option value="" disabled selected>Select a destination</option>
+        <option value="thailand">Thailand</option>
+      </select>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('travelForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Open a new blank page
+      const newWindow = window.open('', '_blank');
+
+      // Image file name (should be in the same folder as your HTML)
+      const imageUrl = "trip.JPEG";
+
+      // Write message + image into new page
+      newWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Submitted</title>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              background-color: #f0f0f0;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+              margin: 0;
+            }
+            h1 {
+              color: green;
+              margin-bottom: 20px;
+            }
+            img {
+              max-width: 80%;
+              border-radius: 8px;
+              box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            }
+          </style>
+        </head>
+        <body>
+          <h1>Form submitted successfully!</h1>
+          <img src="${imageUrl}" alt="Travel Image" />
+        </body>
+        </html>
+      `);
+
+      newWindow.document.close();
+    });
+  </script>
+
+</body>
+</html>
